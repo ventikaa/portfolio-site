@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sundari Avanthikaa Srinivasan | Portfolio</title>
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+    <style>
+        html {
+            cursor: none;
+        }
+        
+        .custom-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        /* Sleek Modern Styling */
+        :root {
+            --background-color: #000000;
+            --card-color: #1a1a1a;
+            --text-color: #ffffff;
+            --secondary-text: #b3b3b3;
+            --accent-color: #4d4d4d;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .experience-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .pub-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+
+        .card {
+            background: var(--card-color);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .experience-card h3 {
+            color: var(--secondary-text);
+            font-weight: 400;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .experience-card .duration {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-card .description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+        }
+
+        .project-cover {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--secondary-text);
+            margin-bottom: 15px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .github-link svg {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .publication-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .publication-card .published {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .education-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .education-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .education-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .education-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .education-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .education-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-text);
+        }
+
+        .certification-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .certification-card .issued {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-color);
+            border-radius: 8px;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            max-height:63vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            color: var(--secondary-text);
+            font-size: 28px;
+            font-weight: 300;
+            cursor: none;
+        }
+
+        .close:hover {
+            color: var(--text-color);
+        }
+
+        .modal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal .published {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .abstract {
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+        }
+
+        .abstract h4 {
+            margin-top: 0;
+            font-weight: 500;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--background-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            cursor: none;
+        }
+
+        .view-button:hover {
+            background: #e6e6e6;
+        }
+
+        .resume-iframe, .certificate-iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--accent-color);
+        }
+
+        .resume-button {
+            background: var(--text-color);
+            color: var(--background-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-family: 'SF Pro Display', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: none;
+            transition: background 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .resume-button:hover {
+            background: #e6e6e6;
+        }
+
+        .footer p {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        a, button, .close, .view-button, .resume-button, .card {
+            cursor: none !important;
+        }
+
+        .social-links a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color);
+    transition: fill 0.3s ease;
+}
+
+.social-links a:hover svg {
+    fill: var(--secondary-text);
+}
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Sundari Avanthikaa Srinivasan</h1>
+            <p>AI Enthusiast and Aspiring Data Scientist</p>
+        </header>
+
+        <main>
+            <!-- Experience Section -->
+            <section class="section experience-section">
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-card-grid">
+                    <div class="card experience-card">
+                        <h3>Summer Intern</h3>
+                        <h2>EY</h2>
+                        <p class="duration">Jan 2025 - Apr 2025</p>
+                        <li> Designed a comprehensive capacity planning solution to streamline resource allocation and project management.</li> 
+                        <li>Developed a Spring Boot backend, React frontend, and MySQL database; integrated role-based access control and reporting features.</li> 
+                        <li> Enabled efficient tracking of ongoing projects and new demands, improving decision-making and resource utilization.</li>                     
+                    </div>
+                    <div class="card experience-card">
+                        <h3>Digital & AI Intern</h3>
+                        <h2>TVS Motor Company</h2>
+                        <p class="duration">Aug 2024 - Nov 2024</p>
+                        <li>Developed an AI-powered part-counting system for Plant 2 Vehicle Store.</li> 
+                        <li> Used YOLO CNN for real-time detection, collected and annotated 1,000+ images, and built a Tkinter-based GUI for invoice verification.</li> 
+                        <li>Achieved 83% model accuracy, automated parts verification, and improved inventory management efficiency by reducing human error.</li>                                        
+                     </div>
+                    <div class="card experience-card">
+                        <h3>GenAI Intern</h3>
+                        <h2>GreenPepperAI</h2>
+                        <p class="duration">Jan 2024 - Apr 2024</p>
+                        <li> Built "Research PAA," an AI-powered research assistant for research paper drafting.</li> 
+                        <li> Leveraged Llama 2 API for text generation, developed a Streamlit-based UI, and integrated customization options for formatting, citations, and templates.</li> 
+                        <li>Automated initial research paper drafting, improved user efficiency, and provided structured content generation for student researchers and scholars.</li>      
+                    </div>
+                    <div class="card experience-card">
+                        <h3>AI Research & ML Intern</h3>
+                        <h2>Pixel & Mortar</h2>
+                        <p class="duration">Jun 2023 - Jul 2023</p>
+                        <li> Automated client requirement processing.</li> 
+                        <li>  Used Python (Pandas, Openpyxl) to streamline Excel template creation.</li> 
+                        <li> Improved efficiency for fulfillment teams.</li>    
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="section projects-section">
+                <h2 class="section-title">Projects</h2>
+                <div class="card-grid">
+                    <div class="card project-card">
+                        <img src="assets/stakedash.jpg" alt="Project Cover" class="project-cover">
+                        <h3>BetTracker</h3>
+                        <p>A dashboard built with react to track your sports bet, calculate total profits and log deposits.</p>
+                        <a href="https://ventikaa.github.io/sports_bet_tracking/" class="github-link" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                    <div class="card project-card">
+                        <img src="assets/f1-race.jpg" alt="Project Cover" class="project-cover">
+                        <h3>F1 Race Predictor</h3>
+                        <p>A model built to predict the podium lineup of F1 races, build using React, XGBoost and ErgastAPI.</p>
+                        <a href="#" class="github-link" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                    <div class="card project-card">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project Cover" class="project-cover">
+                        <h3>AI Chatbot</h3>
+                        <p>Natural language processing chatbot with sentiment analysis and context awareness using TensorFlow.js.</p>
+                        <a href="#" class="github-link" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                    <div class="card project-card">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Project Cover" class="project-cover">
+                        <h3>E-commerce Platform</h3>
+                        <p>Full-stack online store with payment processing, inventory management, and analytics dashboard.</p>
+                        <a href="#" class="github-link" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section class="section publications-section">
+                <h2 class="section-title">Publications</h2>
+                <div class="pub-card-grid">
+                    <div class="card publication-card" onclick="openPublicationModal(0)">
+                        <p class="published">Apr 2025</p>
+                        <h3>Machine Learning Workflow for Correlating Anxiety and Stress: A SHAP-Based Multimodal Analysis</h3>
+                        <p class="published">Presented at ICCETSP 2025. Pending Publication</p>
+                    </div>
+                    <div class="card publication-card" onclick="openPublicationModal(1)">
+                        <p class="published">Nov 2024</p>
+                        <h3>Neurodynamic Characterization and Prediction of Schizophrenia Using Echo State Networks with Serotonin Modulation: A Temporal and Frequency Band Analysis Approach</h3>
+                        <p class="published">Preprint Available.Pending Publication</p>
+                    </div>
+                    <div class="card publication-card" onclick="openPublicationModal(2)">
+                        <p class="published">Oct 2024</p>
+                        <h3>Enhancing Neurofuzzy Plasticity: A Fusion of LSTM and Artificial Neurogenesis</h3>
+                        <p class="published">Presented at ICETCI 2024. Published in IEEEXplore.</p>
+                    </div>
+                    <div class="card publication-card" onclick="openPublicationModal(3)">
+                        <p class="published">Aug 2023</p>
+                        <h3>Reinforcement Learning: Advancements, Limitations, and Real-world Applications                        </h3>
+                        <p class="published">Published in IJSREM Aug 2023 issue. </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section education-section">
+                <h2 class="section-title">Education</h2>
+                <div class="card">
+                    <h3>B.Tech Computer Science Engineering w/ Specialization in AI/ML</h3>
+                    <p>SRM Institute of Science and Technology | 2021 - 2025 | GPA: 8.77/10</p>
+                    
+                    <div class="education-content">
+                        <div class="education-column">
+                            <h4>Relevant Coursework</h4>
+                            <ul class="education-list">
+                                <li>Data Structures & Algorithms</li>
+                                <li>Statistical Machine Learning</li>
+                                <li>Artificial Intelligence</li>
+                                <li>Deep Learning</li>
+                                <li>Database Management Systems</li>
+                            </ul>
+                        </div>
+                        <div class="education-column">
+                            <h4>Extracurriculars</h4>
+                            <ul class="education-list">
+                                <li>President of White Hat Hackers Club - <i>AY 2024 - 2025</i></li>
+                                <li>Overall Coordinator of Technozarre 2024 - <i>Mar 2024</i> </li>
+                                <li>Head of Public Relations at White Hat Hackers Club - <i>AY 2023 - 2024</i></li>
+                                <li>Participant in Amazon HackOn S4, GirlScript Summer of Code 2024 </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section class="section certifications-section">
+                <h2 class="section-title">Certifications</h2>
+                <div class="card-grid">
+                    <div class="card certification-card" onclick="openCertificateModal(0)">
+                        <h3>AWS Cloud Foundations</h3>
+                        <p class="issued">Amazon Web Services, 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(0)">
+                        <h3>AWS Data Engineering</h3>
+                        <p class="issued">Amazon Web Services, 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(1)">
+                        <h3>British Airways - Data Science Job Simulation</h3>
+                        <p class="issued">Forage, 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(2)">
+                        <h3>Intro to Operating Systems 1: Virtualization</h3>
+                        <p class="issued">Codio, 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(2)">
+                        <h3>Goldman Sachs - Software Engineering Job Simulation</h3>
+                        <p class="issued">Forage, 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Google - Crash Course on Python</h3>
+                        <p class="issued">Coursera, 2020</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>GirlScript Summer of Code 2024</h3>
+                        <p class="issued">Aug 2024</p>
+                    </div>
+                        <div class="card certification-card" onclick="openCertificateModal(3)">
+                            <h3>HackOn by Amazon S4</h3>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>IBM - Introduction to Software Engineering</h3>
+                        <p class="issued">Apr 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Infosec - Introduction to Cybersecurity Foundations</h3>
+                        <p class="issued">Apr 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Infosec - Operating System Foundations</h3>
+                        <p class="issued">Mar 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Intel - Data Science Tools for AI Applications</h3>
+                        <p class="issued">Nov 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>JPMC - Software Engineering Job Simulation</h3>
+                        <p class="issued">May 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>NPTEL - Python for Data Science</h3>
+                        <p class="issued">Jan 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Oracle - Database Foundations</h3>
+                        <p class="issued">Apr 2024</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Stanford - Divide and Conquer, Sorting and Searching & Randomized Algorithms</h3>
+                        <p class="issued">Apr 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Stanford - Organizational Analysis</h3>
+                        <p class="issued">Apr 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Stanford - Supervised Machine Learning: Regression and Classification</h3>
+                        <p class="issued">Apr 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>Stanford - Introduction to Statistics</h3>
+                        <p class="issued">Mar 2023</p>
+                    </div>
+                    <div class="card certification-card" onclick="openCertificateModal(3)">
+                        <h3>User Interface Automation with Modern Design in Studio</h3>
+                        <p class="issued">Mar 2024</p>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <button class="resume-button" onclick="openResumeModal()">View Resume</button>
+            
+            <!-- Social Media Links -->
+            <div class="social-links" style="margin: 20px 0;">
+                <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" style="margin: 0 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/your-github-profile" target="_blank" style="margin: 0 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://medium.com/@your-medium-profile" target="_blank" style="margin: 0 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <p>Made with ♥ by <a href="https://github.com/ventikaa" target="_blank">ventikaa</a></p>
+        </footer>
+
+    <!-- Publication Modal -->
+    <div class="modal" id="publication-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('publication-modal')">&times;</span>
+            <h3 id="modal-pub-title"></h3>
+            <p class="published" id="modal-pub-published"></p>
+            <div class="abstract">
+                <h4>Abstract</h4>
+                <p id="modal-pub-abstract"></p>
+            </div>
+            <a href="#" target="_blank" class="view-button" id="modal-pub-link">View Publication</a>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal" id="certificate-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('certificate-modal')">&times;</span>
+            <iframe src="" class="certificate-iframe" id="certificate-iframe"></iframe>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div class="modal" id="resume-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('resume-modal')">&times;</span>
+            <iframe src="resume.pdf" class="resume-iframe"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.custom-cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.body.style.cursor = 'none';
+        cursor.style.display = 'block';
+
+        // Publications data
+        const publications = [
+            {
+                title: 'Machine Learning Workflow for Correlating Anxiety and Stress: A SHAP-Based Multimodal Analysis',
+                published: 'Presented at ICCETSP 2025. Preprint available, pending publication',
+                abstract: 'Many studies employ black-box Machine Learning (ML) models to  classify stress and anxiety without examining the underlying biological and phys iological relevance. In this study, we developed an ML workflow based on Shap ley values (SHAP) to interpret black-box models. This approach enables model agnostic visualization of complex relationships between features and predictions  while facilitating the explanation of individual predictions, which is essential in  clinical practice. To demonstrate the workflow, Random Forest (RF), eXtreme  Gradient Boosting (XGBoost), Decision Tree (CART), and Random izedSearchCV-optimized models were trained on the Multilevel Monitoring of  Activity and Sleep in Healthy People (MMASH) dataset. Participants were sub grouped into high and low state anxiety groups, where heart rate was predicted  within each subgroup. SHAP analysis identified activity type as the most influ ential feature distinguishing anxiety states. Additionally, stress-inducing versus  rest activity classification was performed using features including RMSSD, heart  rate, and sleep-related measures, with heart rate emerging as the most significant  attribute. The RF and XGBoost classifiers achieved an area under the ROC curve  (AUC-ROC) exceeding 0.998 for stress-versus-rest classification. Key features  influencing anxiety and stress classifications included heart rate, sleep efficiency,  melatonin levels before sleep, and cortisol levels after sleep. The results highlight  a direct correlation between stress and anxiety, emphasizing the potential of mul timodal data integration for clinical assessments and personalized interventions.',
+                link: 'https://www.researchsquare.com/article/rs-6254760/v1'
+            },
+            {
+                title: 'Neurodynamic Characterization and Prediction of Schizophrenia Using Echo State Networks with Serotonin Modulation: A Temporal and Frequency Band Analysis Approach',
+                published: 'Preprint available, pending publication.',
+                abstract: 'Schizophrenia is characterized by significant cognitive dysfunctions, with serotonin  playing a crucial role in modulating neural processes. Analyzing the impact of serotonin  on EEG patterns can provide important insights into distinguishing schizophrenic  patients from healthy individuals. This study integrates serotonin-inspired modulation  into Echo State Networks (ESNs) to model the nonlinear dynamics of EEG data from  schizophrenic patients, with a focus on key brain regions such as the frontal lobe and  medial prefrontal cortex (mPFC). EEG data were preprocessed (0.1–40 Hz), ICA filtered, segmented, and analyzed using ESNs, with serotonin modulation targeting 5 HT1A and 5-HT2A receptors to simulate effects on frontal and mPFC regions.  Principal Component Analysis (PCA) and K-means clustering were used to classify  schizophrenic and healthy samples. Results showed that EEG patterns in  schizophrenia exhibited elevated delta and gamma band activity, with diminished alpha  and beta band activity. Serotonin modulation enhanced the performance of ESNs by  reducing noise and improving predictive accuracy, particularly in the frontal regions.  The incorporation of serotonin modulation into ESNs offers a deeper understanding of  the nonlinear dynamics of brain activity in schizophrenia and provides valuable insights  into disease-specific EEG features, potentially advancing diagnostic approaches.',
+                link: 'https://www.researchsquare.com/article/rs-5457834/v1'
+            },
+            {
+                title: 'Enhancing Neurofuzzy Plasticity: A Fusion of LSTM and Artificial Neurogenesis',
+                published: 'IEEEXplore, Oct 2024',
+                abstract: 'This paper proposes a novel approach to address the dead neuron and stability-plasticity dilemma in deep neuro-fuzzy systems. The proposed solution is a neuro-fuzzy network with Long-short term memory (LSTM) based Artificial Neurogenesis (ANG), which combines the strengths of both deep neural networks and fuzzy logic. This hybridized model offers several benefits, including improved adaptability, scalability, and interpretability. By leveraging LSTM memory cells, the framework enables dynamic adaptation of the network. The proposed model, evaluated under given parameters, demonstrated significant improvements in accuracy compared to existing methods. Extensive testing further verified the hypothesis, with results reflected in accuracy graphs and various other performance metrics.',
+                link: 'https://ieeexplore.ieee.org/document/10704177'
+            },
+            {
+                title: 'Reinforcement Learning: Advancements, Limitations, and Real-world Applications',
+                published: 'IJSREM , Aug 2023',
+                abstract: 'This paper aims to review the advancements, limitations, and real-world applications of RL. Additionally, it will explore the future of RL and the challenges that must be addressed to enhance its widespread applicability. By addressing these challenges, RL can be further harnessed to tackle complex real-world problems..',
+                link: 'https://ijsrem.com/download/reinforcement-learning-advancements-limitations-and-real-world-applications/'
+            }
+        ];
+
+        // Certificates data
+        const certificates = [
+            { pdf: 'AWS - Cloud Foundations.pdf' },
+            { pdf: 'AWS - Data Engineering.pdf ' },
+            { pdf: 'British Airways - Data Science.pdf' },
+            { pdf: 'Codio1.pdf' },
+            { pdf: 'goldman sachs.pdf' },
+            { pdf: 'Google1.pdf' },
+            { pdf: 'GSSoC 2024.png' },
+            { pdf: 'HackOn with Amazon.pdf' },
+            { pdf: 'IBM1.pdf' },
+            { pdf: 'Infosec1.pdf' },
+            { pdf: 'Infosec2.pdf' },
+            { pdf: 'Intel1.pdf' },
+            { pdf: 'jpmc software engineering.pdf' },
+            { pdf: 'nptel - python for data science.pdf' },
+            { pdf: 'oracle - database foundations.pdf' },
+            { pdf: 'Stanford1.pdf' },
+            { pdf: 'Stanford2.pdf' },
+            { pdf: 'Standford3.pdf' },
+            { pdf: 'Stanford4.pdf' },
+            { pdf: 'ui automation.pdf' },
+        ];
+
+        // Modal functions
+        function openPublicationModal(index) {
+            const pub = publications[index];
+            document.getElementById('modal-pub-title').textContent = pub.title;
+            document.getElementById('modal-pub-published').textContent = pub.published;
+            document.getElementById('modal-pub-abstract').textContent = pub.abstract;
+            document.getElementById('modal-pub-link').href = pub.link;
+            
+            document.getElementById('publication-modal').style.display = 'flex';
+        }
+
+        function openCertificateModal(index) {
+            const cert = certificates[index];
+            document.getElementById('certificate-iframe').src = 'certificates/' + cert.pdf;
+            document.getElementById('certificate-modal').style.display = 'flex';
+        }
+
+        function openResumeModal() {
+            document.getElementById('resume-modal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
